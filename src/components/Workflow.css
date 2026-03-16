@@ -1,0 +1,326 @@
+/* Workflow.css */
+.wf-main-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.wf-animation-wrapper {
+  width: 100%;
+}
+
+.wf-visual-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: 0.75rem;
+  background: white;
+  border-radius: 1.5rem;
+  box-shadow: 0 20px 50px -10px rgba(0,0,0,0.05);
+  border: 1px solid rgba(59, 130, 246, 0.2); /* Base blue border */
+  min-height: 620px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.wf-visual-container::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    transparent 20%,
+    #3b82f6 25%,
+    transparent 30%,
+    transparent 100%
+  );
+  animation: rotate 6s linear infinite;
+  transform: translate(-50%, -50%);
+  z-index: -2;
+}
+
+.wf-visual-container::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background: white;
+  border-radius: calc(1.5rem - 1px);
+  z-index: -1;
+}
+
+.wf-request-pill {
+  background: #f0f7ff;
+  border: 1px solid #cce3ff;
+  padding: 0.5rem 1.25rem;
+  border-radius: 4rem;
+  max-width: 95%;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #1e3a8a;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.6s ease;
+  line-height: 1.2;
+  font-weight: 500;
+}
+
+.wf-request-pill.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.wf-connector-line {
+  width: 1px;
+  background: #cbd5e1;
+  height: 0;
+  transition: height 0.5s ease;
+  position: relative;
+}
+
+.wf-connector-line::after {
+  content: '▼';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #3b82f6;
+  font-size: 0.45rem;
+  opacity: 0;
+  transition: opacity 0.3s ease 0.4s;
+}
+
+.wf-connector-line.active {
+  height: 15px; /* Reduced to save space */
+  background: #3b82f6;
+}
+
+.wf-connector-line.active::after {
+  opacity: 1;
+}
+
+.wf-agent-node-container {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.4s ease;
+  padding: 0.25rem 0;
+}
+
+.wf-agent-node-container.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.wf-agent-node {
+  width: 48px; /* Slightly smaller node */
+  height: 48px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.7rem;
+  color: #1e3a8a;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.wf-pulse-ring, .wf-pulse-ring-outer {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  border: 1px solid #3b82f6;
+  border-radius: 50%;
+  animation: pulse-diag 3s infinite;
+}
+
+.wf-pulse-ring-outer {
+  animation: pulse-diag 3s infinite 1.5s;
+  border-style: dashed;
+  border-color: #93c5fd;
+}
+
+@keyframes pulse-diag {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+.wf-steps-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem; /* Tighter gaps for 7 steps */
+  width: 100%;
+}
+
+.wf-step-card {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem; 
+  padding: 0.4rem 0.6rem; /* Smaller padding */
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.4s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.wf-step-card.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.wf-step-num-badge {
+  width: 24px;
+  height: 24px;
+  background: #eff6ff;
+  color: #2563eb;
+  border: 1px solid #bfdbfe;
+  border-radius: 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.7rem;
+  flex-shrink: 0;
+}
+
+.wf-step-content {
+  flex-grow: 1;
+}
+
+.wf-step-label {
+  font-size: 0.5rem;
+  font-weight: 800;
+  color: #2563eb;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.05rem;
+}
+
+.wf-step-text {
+  font-size: 0.7rem;
+  color: #475569;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.wf-step-check {
+  width: 12px;
+  height: 12px;
+  color: #10b981;
+  flex-shrink: 0;
+}
+
+
+.workflow-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.wf-info-card {
+  padding: 1rem 1.5rem;
+  background: white;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-left: 4px solid rgba(59, 130, 246, 0.2);
+  border-radius: 1rem;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.wf-info-card::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background: white;
+  border-radius: calc(1rem - 1px);
+  z-index: -1;
+  transition: background 0.3s ease;
+}
+
+.wf-info-card::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    transparent 20%,
+    #3b82f6 25%,
+    transparent 30%,
+    transparent 100%
+  );
+  animation: rotate 3s linear infinite;
+  transform: translate(-50%, -50%);
+  z-index: -2;
+}
+
+.wf-info-card.active {
+  border-color: transparent;
+  border-left-color: #3b82f6;
+  transform: translateX(10px) scale(1.02);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  animation: wf-card-pulse 2s ease-in-out infinite;
+}
+
+@keyframes wf-card-pulse {
+  0%, 100% { transform: translateX(10px) scale(1.02); }
+  50% { transform: translateX(12px) scale(1.03); }
+}
+
+.wf-info-card.active::after {
+  background: white; /* Pure white background */
+}
+
+.wf-info-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #64748b;
+  letter-spacing: 0.1em;
+  transition: color 0.3s;
+}
+
+.wf-info-card.active .wf-info-label {
+  color: #3b82f6;
+}
+
+.wf-info-title {
+  margin: 0.25rem 0;
+  font-size: 1.1rem;
+  color: #1e293b;
+}
+
+.wf-info-desc {
+  color: #64748b;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.wf-text-content {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 1024px) {
+  .wf-main-section {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 3rem;
+  }
+}

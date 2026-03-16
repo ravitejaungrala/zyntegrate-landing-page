@@ -1,0 +1,143 @@
+/* CTASection.css */
+/* CTA Section */
+.cta-card {
+  background: white;
+  border-radius: 4rem;
+  padding: 4rem;
+  border: 1px solid var(--border);
+  box-shadow: 0 20px 50px rgba(37, 99, 235, 0.1);
+  position: relative;
+  margin: 2rem auto;
+  border: 8px solid var(--primary);
+  animation: border-pulse 2s ease-in-out infinite;
+  display: flex;
+  flex-direction: column;
+}
+
+.refined-layout {
+  display: grid !important;
+  grid-template-columns: 1.2fr 1.8fr;
+  align-items: center;
+  gap: 5rem;
+  text-align: left;
+}
+
+@keyframes border-pulse {
+  0% { transform: scale(1); border-color: var(--primary); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); }
+  50% { transform: scale(1.01); border-color: var(--accent); box-shadow: 0 0 0 15px rgba(37, 99, 235, 0); }
+  100% { transform: scale(1); border-color: var(--primary); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+}
+
+.pill-badge {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  padding: 0.5rem 1.25rem;
+  border-radius: 2rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #475569;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.cta-heading {
+  font-size: 3rem;
+  line-height: 1.2;
+  color: #1e293b;
+  margin-bottom: 1rem;
+}
+
+.cta-subtext {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.cta-col-right-combined {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  border-left: 1px solid var(--border);
+  padding-left: 4rem;
+}
+
+.cta-button-container {
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 1rem; /* Slight offset from the absolute left */
+}
+
+.cta-info-footer {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr; /* Slightly asymmetric to push contact right */
+  gap: 4rem;
+}
+
+.cta-btn {
+  background: #2563eb;
+  padding: 1.25rem 3rem;
+  font-size: 1.1rem;
+  border-radius: 0.8rem;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.contact-column h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+  color: var(--text-main);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.contact-column p {
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.contact-column a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.contact-column a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 1024px) {
+  .refined-layout {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+
+  .cta-heading {
+    font-size: 2.5rem;
+  }
+
+  .cta-col-right-combined {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid var(--border);
+    padding-top: 3rem;
+    align-items: center;
+  }
+
+  .cta-button-container {
+    justify-content: center;
+  }
+
+  .cta-info-footer {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    width: 100%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .cta-heading {
+    font-size: 2.5rem;
+  }
+}
