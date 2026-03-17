@@ -6,10 +6,14 @@
 }
 
 .trigger-bar-section {
-  padding: 1.5rem 0; /* Tightened padding */
-  border-bottom: 1px solid var(--border);
+  padding: 1.25rem 0; /* Slightly tighter */
+  border-top: 2px solid rgba(59, 130, 246, 0.6); /* Vibrant blue edge */
+  border-bottom: 2px solid rgba(59, 130, 246, 0.6);
   overflow: hidden;
-  background: white;
+  background: rgba(255, 255, 255, 0.4); /* Glassmorphism */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: inset 0 0 20px rgba(59, 130, 246, 0.05); /* Subtle inner glow */
 }
 
 .trigger-bar-wrapper {

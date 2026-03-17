@@ -40,6 +40,55 @@
   gap: 1.5rem;
 }
 
+.btn-hero-explore {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn-hero-explore::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 20%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: rotate(30deg);
+  transition: all 0s;
+  pointer-events: none;
+}
+
+.btn-hero-explore:hover {
+  transform: scale(1.05) translateY(-2px);
+  box-shadow: 0 10px 25px var(--primary-glow);
+  background: linear-gradient(135deg, #2563eb, #6366f1, #3b82f6);
+  background-size: 200% 200%;
+  animation: colorShift 3s ease infinite;
+}
+
+@keyframes colorShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.btn-hero-explore:hover::after {
+  left: 120%;
+  transition: all 0.6s ease-in-out;
+}
+
+@media (max-width: 1280px) {
+  .hero {
+    gap: 2rem;
+    padding-top: 6rem;
+  }
+
+  .hero-content h1 {
+    font-size: 2.8rem;
+  }
+}
+
 @media (max-width: 1024px) {
   .hero {
     grid-template-columns: 1fr;

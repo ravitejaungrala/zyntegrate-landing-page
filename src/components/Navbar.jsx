@@ -1,5 +1,6 @@
 import React from 'react';
 import './Navbar.css';
+import { GradientButton } from './ui/gradient-button';
 
 const Navbar = () => {
   return (
@@ -18,7 +19,9 @@ const Navbar = () => {
           <li><a href="#contact" className="nav-link">Contact</a></li>
         </ul>
         
-        <button className="btn btn-primary">Get Started</button>
+        <GradientButton variant="variant" style={{ minWidth: '120px', padding: '0.75rem 1.5rem' }}>
+          Get Started
+        </GradientButton>
       </div>
     </nav>
   );

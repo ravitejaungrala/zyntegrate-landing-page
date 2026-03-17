@@ -1,5 +1,6 @@
 import React from 'react';
 import './Hero.css';
+import { GradientButton } from './ui/gradient-button';
 
 const Hero = ({ image }) => {
   return (
@@ -15,9 +16,9 @@ const Hero = ({ image }) => {
           databases to cloud platforms and APIs all in one intelligent layer.
         </p>
         <div className="hero-actions">
-          <button className="btn btn-primary" style={{ padding: '1rem 2.5rem', fontSize: '1.1rem' }}>
+          <GradientButton variant="variant">
             Explore Integrations
-          </button>
+          </GradientButton>
         </div>
       </div>
       <div className="hero-image float">

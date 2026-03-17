@@ -111,13 +111,13 @@ const Workflow = () => {
           AI agents that monitor events, trigger workflows, and optimize operations automatically.
         </p>
         
-        <div className="workflow-steps">
+        <div className="wf-info-steps">
           {infoSteps.map((step, i) => {
             const isActive = (i === 0 && activeStep >= 4 && activeStep <= 5) || 
                              (i === 1 && activeStep >= 6 && activeStep <= 8) || 
                              (i === 2 && activeStep >= 9 && activeStep <= 10);
             return (
-              <div key={i} className={`wf-info-card ${isActive ? 'active' : ''}`}>
+              <div key={i} className={`wf-info-card ${isActive ? 'wf-active' : ''}`}>
                 <span className="wf-info-label">{step.label}</span>
                 <h3 className="wf-info-title">{step.title}</h3>
                 <p className="wf-info-desc">{step.desc}</p>

@@ -8,17 +8,17 @@ import UseCases from './components/UseCases';
 import CTASection from './components/CTASection';
 import './App.css';
 
-// Import generated assets
-import heroImg from 'C:/Users/jaswa/.gemini/antigravity/brain/1aff0822-4f61-4d2b-b8e2-9e18ede68d01/hero_agent_masterpiece_1773469849477.png';
+// Import generated assets - Flagship Visuals
+import heroImg from 'C:/Users/jaswa/.gemini/antigravity/brain/7a2cd4c9-d655-41dc-a41f-afac25fa7d24/zyntegrate_hero_masterpiece_1773646515639.png';
 
 // Use Case Assets
-import legacyImg from 'C:/Users/jaswa/.gemini/antigravity/brain/1aff0822-4f61-4d2b-b8e2-9e18ede68d01/legacy_integration_premium_1773469710524.png';
-import cloudImg from 'C:/Users/jaswa/.gemini/antigravity/brain/1aff0822-4f61-4d2b-b8e2-9e18ede68d01/cloud_orchestration_premium_1773469727338.png';
-import apiImg from 'C:/Users/jaswa/.gemini/antigravity/brain/1aff0822-4f61-4d2b-b8e2-9e18ede68d01/api_connectivity_premium_1773469745301.png';
-import aiImg from 'C:/Users/jaswa/.gemini/antigravity/brain/1aff0822-4f61-4d2b-b8e2-9e18ede68d01/ai_agents_premium_1773469762398.png';
-import lowcodeImg from 'C:/Users/jaswa/.gemini/antigravity/brain/1aff0822-4f61-4d2b-b8e2-9e18ede68d01/lowcode_builder_premium_1773469788097.png';
-import connectorsImg from 'C:/Users/jaswa/.gemini/antigravity/brain/1aff0822-4f61-4d2b-b8e2-9e18ede68d01/prebuilt_connectors_premium_1773469804154.png';
-import monitoringImg from 'C:/Users/jaswa/.gemini/antigravity/brain/1aff0822-4f61-4d2b-b8e2-9e18ede68d01/monitoring_dashboard_premium_1773469820978.png';
+import legacyImg from 'C:/Users/jaswa/.gemini/antigravity/brain/7a2cd4c9-d655-41dc-a41f-afac25fa7d24/zyntegrate_legacy_v3_1773646603913.png';
+import cloudImg from 'C:/Users/jaswa/.gemini/antigravity/brain/7a2cd4c9-d655-41dc-a41f-afac25fa7d24/zyntegrate_cloud_v3_1773646620565.png';
+import apiImg from 'C:/Users/jaswa/.gemini/antigravity/brain/7a2cd4c9-d655-41dc-a41f-afac25fa7d24/zyntegrate_api_v3_1773646636220.png';
+import aiImg from 'C:/Users/jaswa/.gemini/antigravity/brain/7a2cd4c9-d655-41dc-a41f-afac25fa7d24/zyntegrate_ai_v3_1773646654548.png';
+import lowcodeImg from 'C:/Users/jaswa/.gemini/antigravity/brain/7a2cd4c9-d655-41dc-a41f-afac25fa7d24/zyntegrate_lowcode_v3_1773646674652.png';
+import connectorsImg from 'C:/Users/jaswa/.gemini/antigravity/brain/7a2cd4c9-d655-41dc-a41f-afac25fa7d24/zyntegrate_connectors_v3_1773646693731.png';
+import monitoringImg from 'C:/Users/jaswa/.gemini/antigravity/brain/7a2cd4c9-d655-41dc-a41f-afac25fa7d24/zyntegrate_monitoring_v3_1773646711189.png';
 
 function App() {
   const useCaseAssets = {
