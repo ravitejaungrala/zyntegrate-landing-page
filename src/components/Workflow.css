@@ -15,7 +15,9 @@
   flex-direction: column;
   align-items: center;
   position: relative;
-  padding: 1.25rem; /* Slightly reduced */
+  padding: 0.8rem; /* Slightly tighter */
+  max-width: 440px; /* Reduced to slim down box and frame effectively */
+  margin: 0 auto; /* Center in grid cell */
   background: white;
   border-radius: 2rem;
   box-shadow: 0 20px 50px -10px rgba(0,0,0,0.05);
@@ -156,7 +158,6 @@
 .wf-steps-stack {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem; /* Tighter gaps */
   width: 100%;
 }
 
@@ -164,24 +165,33 @@
   display: flex;
   align-items: center;
   gap: 0.8rem; 
-  padding: 0.6rem 1rem; /* Better padding */
   background: white;
-  border: 1px solid #e2e8f0;
   border-radius: 0.75rem;
-  opacity: 0;
-  transform: translateX(-10px);
-  transition: all 0.4s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  
+  /* Collapse when not visible */
+  max-height: 0;
+  opacity: 0;
+  padding: 0 1rem;
+  overflow: hidden;
+  border: 0px solid transparent;
+  margin-bottom: 0;
+  transform: translateX(-10px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .wf-step-card.visible {
+  max-height: 100px; /* Safe upper bound */
   opacity: 1;
+  padding: 0.45rem 0.8rem; /* Compact padding */
+  border: 1px solid #e2e8f0;
+  margin-bottom: 0.25rem; /* Reduced gap */
   transform: translateX(0);
 }
 
 .wf-step-num-badge {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   background: #eff6ff;
   color: #2563eb;
   border: 1px solid #bfdbfe;
@@ -190,7 +200,7 @@
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   flex-shrink: 0;
 }
 
@@ -199,18 +209,18 @@
 }
 
 .wf-step-label {
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   font-weight: 800;
   color: #2563eb;
   letter-spacing: 0.05em;
-  margin-bottom: 0.15rem;
+  margin-bottom: 0.1rem;
 }
 
 .wf-step-text {
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   color: #475569;
   font-weight: 500;
-  line-height: 1.3;
+  line-height: 1.2;
 }
 
 .wf-step-check {
