@@ -26,8 +26,9 @@
 
 .nav-link {
   font-weight: 500;
-  color: var(--text-muted);
+  color: var(--text-main);
   font-size: 0.95rem;
+  transition: color 0.2s ease;
 }
 
 .nav-link:hover {

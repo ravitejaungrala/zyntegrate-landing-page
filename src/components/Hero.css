@@ -40,6 +40,8 @@
   gap: 1.5rem;
 }
 
+
+
 @media (max-width: 1024px) {
   .hero {
     grid-template-columns: 1fr;

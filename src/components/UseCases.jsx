@@ -1,7 +1,29 @@
 import React from 'react';
 import './UseCases.css';
+import Typewriter from './Typewriter';
 
 const UseCases = ({ assets }) => {
+  const [visibleItems, setVisibleItems] = React.useState({});
+  const observerRef = React.useRef(null);
+
+  React.useEffect(() => {
+    observerRef.current = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const index = entry.target.getAttribute('data-index');
+          setVisibleItems(prev => ({
+            ...prev,
+            [index]: true
+          }));
+        }
+      });
+    }, { threshold: 0.15 });
+
+    return () => {
+      if (observerRef.current) observerRef.current.disconnect();
+    };
+  }, []);
+
   const cases = [
     {
       title: 'Legacy System Integration',
@@ -64,7 +86,7 @@ const UseCases = ({ assets }) => {
   return (
     <section id="cases" className="container section-padding use-cases-container">
       <div className="stats-header" style={{ marginBottom: '6rem' }}>
-        <h2 style={{ fontSize: '3.5rem' }}>Built for Your <span className="text-gradient">Use Case</span></h2>
+        <h2 style={{ fontSize: '3.5rem' }}>Built for Your <span className="animated-gradient-text"><Typewriter text="Use Case" speed={120} delay={400} /></span></h2>
         <p style={{ marginTop: '1rem', fontSize: '1.2rem', color: 'var(--text-muted)' }}>
           Whether you're bridging legacy databases, integrating cloud apps, deploying AI agents, or automating workflows.
         </p>
@@ -74,19 +96,33 @@ const UseCases = ({ assets }) => {
         {cases.map((item, i) => (
           <div 
             key={i} 
-            className="stacking-item" 
-            style={{ 
-              top: `${100 + i * 20}px`,
-              '--usecase-color': item.color 
+            ref={node => {
+              if (node && observerRef.current) {
+                observerRef.current.observe(node);
+              }
             }}
+            data-index={i}
+            className="use-case-trigger"
           >
+            <div
+              className={`stacking-item ${item.reversed ? 'reversed' : 'normal'} ${visibleItems[i] ? 'visible' : ''}`}
+              style={{
+              '--usecase-color': item.color
+            }}
+            >
             {item.reversed ? (
               <>
                 <div className="use-case-image">
                   <img src={item.image} alt={item.title} />
                 </div>
                 <div className="use-case-content">
-                  <h2>{item.title}</h2>
+                  <h2>
+                    <span className="animated-gradient-text">
+                      {visibleItems[i] && (
+                        <Typewriter text={item.title} speed={80} delay={400} />
+                      )}
+                    </span>
+                  </h2>
                   <p>{item.desc}</p>
                   <div className="check-list">
                     {item.points.map((p, j) => (
@@ -101,7 +137,13 @@ const UseCases = ({ assets }) => {
             ) : (
               <>
                 <div className="use-case-content">
-                  <h2>{item.title}</h2>
+                  <h2>
+                    <span className="animated-gradient-text">
+                      {visibleItems[i] && (
+                        <Typewriter text={item.title} speed={80} delay={400} />
+                      )}
+                    </span>
+                  </h2>
                   <p>{item.desc}</p>
                   <div className="check-list">
                     {item.points.map((p, j) => (
@@ -117,6 +159,7 @@ const UseCases = ({ assets }) => {
                 </div>
               </>
             )}
+            </div>
           </div>
         ))}
       </div>

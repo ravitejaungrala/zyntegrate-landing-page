@@ -1,5 +1,6 @@
 import React from 'react';
 import './Workflow.css';
+import Typewriter from './Typewriter';
 
 const scenarios = [
   {
@@ -28,7 +29,7 @@ const scenarios = [
   }
 ];
 
-const VisualWorkflow = ({ globalStep }) => {
+const VisualWorkflow = ({ globalStep, handleMouseMove }) => {
   const scenarioIndex = Math.floor(globalStep / 15);
   const activeStep = globalStep % 15;
   const currentScenario = scenarios[scenarioIndex];
@@ -59,11 +60,18 @@ const VisualWorkflow = ({ globalStep }) => {
           <div 
             key={i} 
             className={`wf-step-card ${activeStep >= (i + 4) ? 'visible' : ''}`}
+            onMouseMove={handleMouseMove}
           >
             <div className="wf-step-num-badge">{step.num}</div>
             <div className="wf-step-content">
               <div className="wf-step-label">{step.label}</div>
-              <div className="wf-step-text">{step.text}</div>
+              <div className="wf-step-text">
+                {activeStep >= (i + 4) ? (
+                  <Typewriter text={step.text} speed={30} delay={150} />
+                ) : (
+                  step.text
+                )}
+              </div>
             </div>
             <div className="wf-step-check">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
@@ -90,6 +98,14 @@ const Workflow = () => {
 
   const activeStep = globalStep % 15;
 
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
+    e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
+  };
+
   const infoSteps = [
     { label: 'RECEIVE & UNDERSTAND', title: 'Input', desc: 'The agent receives requests or events and interprets the intent quickly.' },
     { label: 'PROCESS & CONNECT', title: 'Execution', desc: 'Automatically connects to necessary systems and executes actions.' },
@@ -97,15 +113,22 @@ const Workflow = () => {
   ];
 
   return (
-    <section className="container section-padding wf-main-section">
+    <section className="container section-padding wf-main-section" style={{ position: 'relative', overflow: 'hidden' }}>
+      <div className="wf-bg-blobs">
+        <div className="wf-blob wf-blob-1"></div>
+        <div className="wf-blob wf-blob-2"></div>
+      </div>
+
       <div className="wf-animation-wrapper">
-        <VisualWorkflow globalStep={globalStep} />
+        <VisualWorkflow globalStep={globalStep} handleMouseMove={handleMouseMove} />
       </div>
       
       <div className="wf-text-content">
         <h2 className="section-title">
           Your Systems. <br />
-          <span className="text-gradient">Now Autonomous.</span>
+          <span className="animated-gradient-text">
+            <Typewriter text="Now Autonomous." speed={100} delay={500} />
+          </span>
         </h2>
         <p className="section-subtitle">
           AI agents that monitor events, trigger workflows, and optimize operations automatically.
@@ -115,12 +138,27 @@ const Workflow = () => {
           {infoSteps.map((step, i) => {
             const isActive = (i === 0 && activeStep >= 4 && activeStep <= 5) || 
                              (i === 1 && activeStep >= 6 && activeStep <= 8) || 
-                             (i === 2 && activeStep >= 9 && activeStep <= 10);
+                             (i === 2 && activeStep >= 9 && activeStep <= 11);
+
+            const isVisible = (i === 0 && activeStep >= 4) || 
+                              (i === 1 && activeStep >= 6) || 
+                              (i === 2 && activeStep >= 9);
+
             return (
-              <div key={i} className={`wf-info-card ${isActive ? 'active' : ''}`}>
+              <div 
+                key={i} 
+                className={`wf-info-card ${isActive ? 'active' : ''} ${isVisible ? 'visible' : ''}`}
+                onMouseMove={handleMouseMove}
+              >
                 <span className="wf-info-label">{step.label}</span>
                 <h3 className="wf-info-title">{step.title}</h3>
-                <p className="wf-info-desc">{step.desc}</p>
+                <p className="wf-info-desc">
+                  {isVisible ? (
+                    <Typewriter text={step.desc} speed={30} delay={100} />
+                  ) : (
+                    step.desc
+                  )}
+                </p>
               </div>
             );
           })}

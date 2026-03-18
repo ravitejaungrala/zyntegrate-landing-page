@@ -338,3 +338,93 @@ button {
 
 
 
+/* Animated Gradient Text utilities */
+.animated-gradient-text {
+  background: linear-gradient(270deg, #2563eb, #6366f1, #14b8a6, #a855f7);
+  background-size: 400% 400%;
+  animation: gradient-animation 6s ease infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+@keyframes gradient-animation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Cursor style for Typewriter effect */
+.typing-active::after {
+  content: '|';
+  color: #2563eb;
+  animation: cursor-blink 0.75s infinite;
+  margin-left: 2px;
+  -webkit-text-fill-color: #2563eb; /* Reset fill color for cursor */
+}
+
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+
+/* OVERRIDE FOR ORBITAL DARK THEME */
+.orbital-container {
+  background: #090e1a !important;
+  border-radius: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), inset 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+.orbital-center-hub {
+  width: 72px !important;
+  height: 72px !important;
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.4) !important;
+}
+
+.orbital-center-hub::after {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.25) 0%, transparent 80%);
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.orbital-hub-core {
+  width: 36px !important;
+  height: 36px !important;
+  background: rgba(15, 23, 42, 0.85) !important;
+}
+
+.orbital-path-circle {
+  border: 1px dashed rgba(255, 255, 255, 0.1) !important;
+}
+
+.orbital-node-icon {
+  width: 44px !important;
+  height: 44px !important;
+  background: rgba(15, 23, 42, 0.75) !important;
+  color: #94a3b8 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4) !important;
+}
+
+.orbital-node-icon.active {
+  background: var(--node-color) !important;
+  color: #ffffff !important;
+  box-shadow: 0px 0px 20px var(--node-color) !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.orbital-node-title {
+  top: 52px !important;
+  color: #94a3b8 !important;
+}
+
+.orbital-node-title.active {
+  color: #ffffff !important;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3) !important;
+}

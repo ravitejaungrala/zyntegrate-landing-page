@@ -1,5 +1,6 @@
 import React from 'react';
 import './Hero.css';
+import Typewriter from './Typewriter';
 
 const Hero = ({ image }) => {
   return (
@@ -8,7 +9,9 @@ const Hero = ({ image }) => {
         <h1>
           Connect Everything. <br />
           Automate Anything. <br />
-          <span className="text-gradient">Powered by <br /> Intelligent Agents.</span>
+          <span className="animated-gradient-text">
+            <Typewriter text={"Powered by\nIntelligent Agents."} speed={100} delay={800} />
+          </span>
         </h1>
         <p>
           Zyntegrate unifies fragmented systems and automates complex workflows from legacy 

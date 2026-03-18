@@ -1,7 +1,16 @@
 import React from 'react';
 import './StatsSection.css';
+import Typewriter from './Typewriter';
 
 const StatsSection = () => {
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
+    e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
+  };
+
   const stats = [
     { value: '1,000+', label: 'Avg. SaaS tools per enterprise', title: 'Fragmented Tech Stacks Are Growing', desc: "Modern enterprises juggle hundreds of disconnected applications. Zyntegrate turns chaos into a unified data ecosystem without rip-and-replace migrations.", color: '#a855f7' },
     { value: '10x', label: 'Faster time to integration', title: 'Speed Is the New Competitive Edge', desc: "Manual data pipelines take months. Agent powered automation shrinks deployment from quarters to minutes, letting teams focus on strategy instead of plumbing.", color: '#f59e0b' },
@@ -10,10 +19,15 @@ const StatsSection = () => {
   ];
 
   return (
-    <section className="container section-padding">
+    <section className="container section-padding" style={{ position: 'relative', overflow: 'hidden' }}>
+      <div className="stats-glass-bg-blobs">
+        <div className="stats-blob stats-blob-1"></div>
+        <div className="stats-blob stats-blob-2"></div>
+      </div>
+
       <div className="stats-header">
         <span className="badge">Why it matters</span>
-        <h2 className="section-title">Built for <span className="text-gradient">today's reality</span></h2>
+        <h2 className="section-title">Built for <span className="animated-gradient-text"><Typewriter text="today's reality" speed={100} delay={400} /></span></h2>
         <p className="section-subtitle">
           The world runs on data. Here's why seamless integration is no longer optional—it's the foundation of every modern enterprise.
         </p>
@@ -21,7 +35,12 @@ const StatsSection = () => {
       
       <div className="stats-grid">
         {stats.map((stat, index) => (
-          <div key={index} className="stats-card" style={{ '--stat-color': stat.color }}>
+          <div 
+            key={index} 
+            className="stats-card" 
+            style={{ '--stat-color': stat.color }}
+            onMouseMove={handleMouseMove}
+          >
             <div className="stats-card-header">
               <div className="stats-card-icon"></div>
               <div style={{ textAlign: 'right' }}>

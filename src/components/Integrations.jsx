@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Workflow, Database, Zap, Shield, BarChart, Cloud } from 'lucide-react';
 import './Integrations.css';
+import Typewriter from './Typewriter';
 
 const Integrations = () => {
   const [activeFeature, setActiveFeature] = useState(0);
@@ -30,6 +31,14 @@ const Integrations = () => {
     setActiveFeature(activeIdx);
   }, [rotationAngle]);
 
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
+    e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
+  };
+
   const calculatePosition = (index, total) => {
     const angle = ((index / total) * 360 + rotationAngle) % 360;
     const radius = 160;
@@ -43,7 +52,11 @@ const Integrations = () => {
   };
 
   return (
-    <section className="container section-padding integrations">
+    <section className="container section-padding integrations" style={{ position: 'relative', overflow: 'hidden' }}>
+      <div className="integrations-bg-blobs">
+        <div className="integrations-blob integrations-blob-1"></div>
+        <div className="integrations-blob integrations-blob-2"></div>
+      </div>
       <div className="integrations-visual">
         <div className="orbital-container">
           <div className="orbital-inner">
@@ -73,7 +86,7 @@ const Integrations = () => {
                     }}
                   >
                     <div className="orbital-node-energy"></div>
-                    <div className={`orbital-node-icon ${isActive ? 'active' : ''}`} style={{ borderColor: isActive ? feature.color : 'rgba(59, 130, 246, 0.2)', backgroundColor: isActive ? feature.color : '#fff' }}>
+                    <div className={`orbital-node-icon ${isActive ? 'active' : ''}`} style={{ borderColor: isActive ? feature.color : 'rgba(255, 255, 255, 0.1)' }}>
                       <Icon size={20} color={isActive ? '#fff' : feature.color} />
                     </div>
                     <div className={`orbital-node-title ${isActive ? 'active' : ''}`} style={{ color: isActive ? '#1e293b' : 'rgba(100, 116, 139, 0.7)' }}>
@@ -90,7 +103,9 @@ const Integrations = () => {
       <div>
         <h2 style={{ fontSize: '2.5rem', marginBottom: '1.25rem', lineHeight: '1.1' }}>
           Powerful Integrations. <br />
-          <span className="text-gradient">Simplified.</span>
+          <span className="animated-gradient-text">
+            <Typewriter text="Simplified." speed={120} delay={600} />
+          </span>
         </h2>
         
         <div className="features-list">
@@ -99,6 +114,7 @@ const Integrations = () => {
               key={i} 
               className={`feature-card ${activeFeature === i ? 'active' : ''}`}
               style={{ '--feature-color': f.color }}
+              onMouseMove={handleMouseMove}
             >
               <div className="feature-icon">
                 <f.icon size={16} color={activeFeature === i ? f.color : '#64748b'} />

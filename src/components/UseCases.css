@@ -2,12 +2,12 @@
 /* Stacking Use Cases */
 .use-cases-container {
   padding-bottom: 100px;
+  overflow-x: hidden;
 }
 
 .stacking-item {
-  position: sticky;
-  top: 80px; 
-  margin-bottom: 2rem;
+  position: relative;
+  margin-bottom: 3rem;
   background: white;
   border-radius: 1.5rem;
   box-shadow: 0 20px 50px -10px rgba(0,0,0,0.05);
@@ -20,8 +20,26 @@
   border: 1px solid rgba(59, 130, 246, 0.2);
   min-height: auto;
   z-index: 1;
-  transition: all 0.3s ease;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
+  opacity: 0; /* Hidden initial state */
 }
+
+/* Slide from Left for normal (Text Left, Image Right) */
+.stacking-item.normal {
+  transform: translateX(-100%);
+}
+
+/* Slide from Right for reversed (Image Left, Text Right) */
+.stacking-item.reversed {
+  transform: translateX(100%);
+}
+
+.stacking-item.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Removed horizontal slide entry overrides */
 
 .stacking-item {
   --current-use-case-beam: rgba(59, 130, 246, 0.4); /* Default moving blue */

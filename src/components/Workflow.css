@@ -16,10 +16,10 @@
   align-items: center;
   position: relative;
   padding: 0.75rem;
-  background: white;
+  background: transparent; /* allow backdrop blur inside */
   border-radius: 1.5rem;
-  box-shadow: 0 20px 50px -10px rgba(0,0,0,0.05);
-  border: 1px solid rgba(59, 130, 246, 0.2); /* Base blue border */
+  box-shadow: 0 20px 50px -10px rgba(0,0,0,0.03);
+  border: 1px solid transparent; 
   min-height: 620px;
   overflow: hidden;
   z-index: 1;
@@ -28,46 +28,47 @@
 .wf-visual-container::before {
   content: "";
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 200%;
-  height: 200%;
-  background: conic-gradient(
-    from 0deg,
-    transparent 0%,
-    transparent 20%,
-    #3b82f6 25%,
-    transparent 30%,
-    transparent 100%
+  inset: 0;
+  background: radial-gradient(
+    300px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+    rgba(59, 130, 246, 0.4),
+    transparent 70%
   );
-  animation: rotate 6s linear infinite;
-  transform: translate(-50%, -50%);
-  z-index: -2;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: -1;
+}
+
+.wf-visual-container:hover::before {
+  opacity: 1;
 }
 
 .wf-visual-container::after {
   content: "";
   position: absolute;
   inset: 1px;
-  background: white;
+  background: rgba(255, 255, 255, 0.4); 
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
   border-radius: calc(1.5rem - 1px);
-  z-index: -1;
+  z-index: -2;
+  border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 .wf-request-pill {
-  background: #f0f7ff;
-  border: 1px solid #cce3ff;
-  padding: 0.5rem 1.25rem;
+  background: rgba(240, 247, 255, 0.85);
+  border: 2px solid #3b82f6;
+  padding: 0.75rem 1.5rem;
   border-radius: 4rem;
   max-width: 95%;
   text-align: center;
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   color: #1e3a8a;
   opacity: 0;
   transform: translateY(-10px);
   transition: all 0.6s ease;
-  line-height: 1.2;
-  font-weight: 500;
+  line-height: 1.3;
+  font-weight: 600;
 }
 
 .wf-request-pill.visible {
@@ -117,19 +118,19 @@
 }
 
 .wf-agent-node {
-  width: 48px; /* Slightly smaller node */
-  height: 48px;
+  width: 52px; 
+  height: 52px;
   background: white;
-  border: 1px solid #e2e8f0;
+  border: 2px solid #3b82f6;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
-  font-size: 0.7rem;
+  font-weight: 800;
+  font-size: 0.85rem;
   color: #1e3a8a;
   position: relative;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  box-shadow: 0 10px 25px rgba(59, 130, 246, 0.12);
 }
 
 .wf-pulse-ring, .wf-pulse-ring-outer {
@@ -165,14 +166,37 @@
   display: flex;
   align-items: center;
   gap: 0.6rem; 
-  padding: 0.4rem 0.6rem; /* Smaller padding */
-  background: white;
-  border: 1px solid #e2e8f0;
-  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem; 
+  background: rgba(255, 255, 255, 0.55); /* Glass list item */
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 0.6rem;
   opacity: 0;
   transform: translateX(-10px);
   transition: all 0.4s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  position: relative;
+  z-index: 1;
+}
+
+.wf-step-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    100px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+    rgba(59, 130, 246, 0.3),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+  border-radius: inherit;
+}
+
+.wf-step-card:hover::before {
+  opacity: 1;
 }
 
 .wf-step-card.visible {
@@ -229,63 +253,67 @@
 }
 
 .wf-info-card {
-  padding: 1rem 1.5rem;
-  background: white;
-  border: 1px solid rgba(59, 130, 246, 0.2);
-  border-left: 4px solid rgba(59, 130, 246, 0.2);
+  padding: 1.25rem 1.5rem;
+  background: transparent;
+  border: 1px solid transparent;
   border-radius: 1rem;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  transition: all 0.4s ease, opacity 0.5s ease, transform 0.5s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
   position: relative;
   overflow: hidden;
   z-index: 1;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.wf-info-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.wf-info-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    200px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+    #3b82f6,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: -1;
+}
+
+.wf-info-card:hover::before {
+  opacity: 0.15; /* inside content inner overlay */
+}
+
+.wf-info-card.active::before {
+  opacity: 0.22; /* Always glow when selected/active */
 }
 
 .wf-info-card::after {
   content: "";
   position: absolute;
   inset: 1px;
-  background: white;
+  background: rgba(255, 255, 255, 0.45);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
   border-radius: calc(1rem - 1px);
-  z-index: -1;
+  z-index: -2;
+  border: 1px solid rgba(255, 255, 255, 0.5); /* crystal rim */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
   transition: background 0.3s ease;
 }
 
-.wf-info-card::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 200%;
-  height: 200%;
-  background: conic-gradient(
-    from 0deg,
-    transparent 0%,
-    transparent 20%,
-    #3b82f6 25%,
-    transparent 30%,
-    transparent 100%
-  );
-  animation: rotate 3s linear infinite;
-  transform: translate(-50%, -50%);
-  z-index: -2;
+.wf-info-card.active::after {
+  background: rgba(255, 255, 255, 0.6); 
 }
 
 .wf-info-card.active {
-  border-color: transparent;
-  border-left-color: #3b82f6;
-  transform: translateX(10px) scale(1.02);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  animation: wf-card-pulse 2s ease-in-out infinite;
-}
-
-@keyframes wf-card-pulse {
-  0%, 100% { transform: translateX(10px) scale(1.02); }
-  50% { transform: translateX(12px) scale(1.03); }
-}
-
-.wf-info-card.active::after {
-  background: white; /* Pure white background */
+  transform: translateX(8px) scale(1.01);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
 }
 
 .wf-info-label {
@@ -323,4 +351,35 @@
     text-align: center;
     gap: 3rem;
   }
+}
+
+/* Workflow Ambient Decor Blobs */
+.wf-bg-blobs {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.wf-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.12;
+}
+
+.wf-blob-1 {
+  width: 380px;
+  height: 380px;
+  background: #3b82f6; /* Unified Light Blue */
+  top: 20%;
+  left: -5%;
+}
+
+.wf-blob-2 {
+  width: 320px;
+  height: 320px;
+  background: #3b82f6;
+  bottom: 20%;
+  right: -5%;
 }

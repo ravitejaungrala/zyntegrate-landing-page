@@ -1,5 +1,6 @@
 import React from 'react';
 import './CTASection.css';
+import Typewriter from './Typewriter';
 
 const CTASection = () => {
   return (
@@ -11,7 +12,7 @@ const CTASection = () => {
           </div>
           <h2 className="cta-heading">
             Stop Managing Integrations. <br />
-            Start Orchestration System.
+            <span className="animated-gradient-text"><Typewriter text="Start Orchestration System." speed={120} delay={600} /></span>
           </h2>
           <p className="cta-subtext">
             Bring clarity to your infrastructure.

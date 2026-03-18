@@ -22,11 +22,11 @@
 }
 
 .feature-card { 
-  padding: 1rem; 
+  padding: 1.25rem; 
   border-radius: 1rem; 
-  background: white; 
-  border: 1px solid rgba(59, 130, 246, 0.2); 
-  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+  background: transparent; 
+  border: 1px solid transparent; 
+  transition: all 0.4s ease; 
   position: relative; 
   overflow: hidden; 
   cursor: pointer;
@@ -34,55 +34,46 @@
 }
 
 .feature-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-}
-
-.feature-card {
-  --current-border-color: rgba(59, 130, 246, 0.4); /* Default moving blue */
-}
-
-.feature-card.active { 
-  border-color: transparent; 
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08); 
-  transform: translateY(-4px); 
-  --current-border-color: var(--feature-color); /* Switch to theme color */
+  transform: translateY(-4px) scale(1.02);
 }
 
 .feature-card::before {
   content: "";
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 200%;
-  height: 200%;
-  background: conic-gradient(
-    from 0deg,
-    transparent 0%,
-    transparent 15%,
-    var(--current-border-color) 25%,
-    transparent 35%,
-    transparent 100%
+  inset: 0;
+  background: radial-gradient(
+    180px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+    var(--feature-color),
+    transparent 70%
   );
-  animation: rotate 4s linear infinite;
-  transform: translate(-50%, -50%);
-  z-index: -2;
-  opacity: 1; /* Always visible */
-  transition: opacity 0.3s ease;
-  filter: blur(1px);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: -1; /* Sits above inner bg */
+}
+
+.feature-card:hover::before {
+  opacity: 0.18; /* Inner overlay content spotlight */
 }
 
 .feature-card.active::before {
-  animation-duration: 2s; /* Faster for active state */
+  opacity: 0.25; /* Always cast glow when active/selected */
 }
 
 .feature-card::after {
   content: "";
   position: absolute;
   inset: 1px;
-  background: white;
+  background: rgba(255, 255, 255, 0.4); 
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
   border-radius: calc(1rem - 1px);
-  z-index: -1;
+  z-index: -2;
+  border: 1px solid rgba(255, 255, 255, 0.5); /* crystal rim edge boundary */
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.03);
+}
+
+.feature-card.active::after {
+  background: rgba(255, 255, 255, 0.55); /* slightly warmer glassy opacity */
 }
 
 .feature-icon { 
@@ -131,4 +122,38 @@
 @media (max-width: 1024px) {
   .integrations { grid-template-columns: 1fr; text-align: center; gap: 4rem; }
   .integrations-visual { min-height: 480px; }
+}
+
+/* Integrations Decor Blobs */
+.integrations-bg-blobs {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.integrations-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.12;
+}
+
+.integrations-blob-1 {
+  width: 320px;
+  height: 320px;
+  background: #3b82f6; /* Standard Uniform Blue shade */
+  top: 15%;
+  right: 25%;
+}
+
+.integrations-blob-2 {
+  width: 240px;
+  height: 240px;
+  background: #3b82f6;
+  bottom: 25%;
+  right: 5%;
 }

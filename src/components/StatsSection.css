@@ -32,8 +32,8 @@
 .stats-card {
   padding: 1.25rem;
   border-radius: 1.25rem;
-  background: white;
-  border: 1px solid rgba(59, 130, 246, 0.2);
+  background: transparent;
+  border: 1px solid transparent;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -43,49 +43,40 @@
   cursor: pointer;
 }
 
-.stats-card {
-  --current-stat-beam: rgba(59, 130, 246, 0.4); /* Default moving blue */
-}
-
 .stats-card:hover {
-  transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08); /* Clean shadow */
-  border-color: var(--stat-color);
-  --current-stat-beam: var(--stat-color); /* Switch to theme color */
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
 }
 
 .stats-card::before {
   content: "";
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 220%;
-  height: 220%;
-  background: conic-gradient(
-    from 0deg,
-    transparent 0%,
-    transparent 10%,
-    var(--current-stat-beam) 25%,
-    transparent 40%,
-    transparent 100%
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+    var(--stat-color) 0%,
+    transparent 70%
   );
-  animation: rotate 4s linear infinite;
-  transform: translate(-50%, -50%);
-  z-index: -2;
-  filter: blur(2px);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: -1; /* Moved up above inner bg */
 }
 
 .stats-card:hover::before {
-  animation-duration: 1.5s;
+  opacity: 0.15; /* Subdued glow inner overlay */
 }
 
 .stats-card::after {
   content: "";
   position: absolute;
   inset: 1px;
-  background: white;
+  background: rgba(255, 255, 255, 0.35); /* lighter, more transparent silver */
+  -webkit-backdrop-filter: blur(16px); /* Safari / iOS support */
+  backdrop-filter: blur(16px); /* stronger frosting depths */
   border-radius: calc(1.25rem - 1px);
-  z-index: -1;
+  z-index: -2;
+  border: 1px solid rgba(255, 255, 255, 0.4); /* inner crystal glossy rim */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.03);
 }
 
 .stats-card-header,
@@ -133,4 +124,35 @@
     max-width: 500px;
     margin: 0 auto;
   }
+}
+
+/* Glassmorphism Ambient blobs */
+.stats-glass-bg-blobs {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.stats-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+}
+
+.stats-blob-1 {
+  width: 350px;
+  height: 350px;
+  background: #3b82f6; /* Same support as right blob */
+  top: 15%;
+  left: -5%;
+}
+
+.stats-blob-2 {
+  width: 300px;
+  height: 300px;
+  background: #3b82f6;
+  bottom: 20%;
+  right: -5%;
 }

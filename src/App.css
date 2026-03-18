@@ -39,35 +39,42 @@
   gap: 0.75rem;
   font-weight: 600;
   font-size: 0.85rem;
-  color: var(--text-muted);
+  color: #111827; /* Dark slate (effectively black) */
   white-space: nowrap;
-  opacity: 0.7;
-  transition: opacity 0.3s ease;
+  opacity: 1; /* Full opacity */
+  transition: all 0.3s ease;
 }
 
 .trigger-item:hover {
-  opacity: 1;
   color: var(--primary);
 }
 
 .trigger-icon {
-  width: 10px;
-  height: 10px;
-  background: var(--primary);
-  border-radius: 2px;
-  opacity: 0.5;
+  width: 28px;
+  height: 28px;
+  background: #1e293b; /* Dark background */
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
+}
+
+.trigger-icon img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+}
+
+.trigger-item:hover .trigger-icon {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
 }
 
 @keyframes marquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
-}
-
-.trigger-icon {
-  width: 24px;
-  height: 24px;
-  background: #eee;
-  border-radius: 4px;
 }
 
 /* Legacy Styles Cleanup (Keeping only what might be relevant) */
