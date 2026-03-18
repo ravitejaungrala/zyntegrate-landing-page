@@ -1,5 +1,8 @@
 /* CTASection.css */
 /* CTA Section */
+#contact.section-padding {
+  padding-bottom: 2rem; /* Reduce the huge gap at the very bottom of the page */
+}
 .cta-card {
   background: white;
   border-radius: 4rem;
@@ -7,7 +10,7 @@
   border: 1px solid var(--border);
   box-shadow: 0 20px 50px rgba(37, 99, 235, 0.1);
   position: relative;
-  margin: 2rem auto;
+  margin: 2rem auto 1rem auto; /* Reduced bottom margin */
   border: 8px solid var(--primary);
   animation: border-pulse 2s ease-in-out infinite;
   display: flex;

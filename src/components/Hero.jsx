@@ -9,7 +9,7 @@ const Hero = ({ image }) => {
         <h1>
           Connect Everything. <br />
           Automate Anything. <br />
-          <span className="text-gradient">Powered by <br /> Intelligent Agents.</span>
+          <span className="text-gradient-animated">Powered by <br /> Intelligent Agents.</span>
         </h1>
         <p>
           Zyntegrate unifies fragmented systems and automates complex workflows from legacy

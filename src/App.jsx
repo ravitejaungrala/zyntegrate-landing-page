@@ -7,12 +7,11 @@ import Workflow from './components/Workflow';
 import UseCases from './components/UseCases';
 import CTASection from './components/CTASection';
 import './App.css';
-import hubspotImg from './assets/hubspot.svg';
 import salesforceImg from './assets/salesforce.svg';
 import snsImg from './assets/sns.svg';
 import sqsImg from './assets/sqs.svg';
-import webhookImg from './assets/webhook.svg';
 import httpImg from './assets/http.svg';
+import timerImg from './assets/timer.svg';
 
 // Import generated assets - Flagship Visuals
 import heroImg from './assets/zyntegrate_hero_masterpiece_1773646515639.png';
@@ -27,12 +26,15 @@ import connectorsImg from './assets/zyntegrate_connectors_v3_1773646693731.png';
 import monitoringImg from './assets/zyntegrate_monitoring_v3_1773646711189.png';
 
 const triggerItems = [
-  { text: 'Webhook Trigger', img: webhookImg },
-  { text: 'Hubspot Trigger', img: hubspotImg },
   { text: 'Salesforce Platform Event', img: salesforceImg },
+  { text: 'Websocket Trigger', img: '/websocket' },
+  { text: 'Timer Trigger', img: timerImg },
+  { text: 'Hubspot Trigger', img: '/hubspot-trigger.png' },
   { text: 'AWS SNS Trigger', img: snsImg },
+  { text: 'Http Trigger', img: httpImg },
+  { text: 'Webhook Trigger', img: '/webhook.jpg' },
   { text: 'AWS SQS Trigger', img: sqsImg },
-  { text: 'Http Trigger', img: httpImg }
+  { text: 'Azure Service Bus Trigger', img: '/azure-bus.png' }
 ];
 
 function App() {

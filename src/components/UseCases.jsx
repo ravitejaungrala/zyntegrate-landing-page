@@ -64,7 +64,7 @@ const UseCases = ({ assets }) => {
   return (
     <section id="cases" className="container section-padding use-cases-container">
       <div className="stats-header" style={{ marginBottom: '6rem' }}>
-        <h2 style={{ fontSize: '3.5rem' }}>Built for Your <span className="text-gradient">Use Case</span></h2>
+        <h2 style={{ fontSize: '3.5rem' }}>Built for Your <span className="text-gradient-animated">Use Case</span></h2>
         <p style={{ marginTop: '1rem', fontSize: '1.2rem', color: 'var(--text-muted)' }}>
           Whether you're bridging legacy databases, integrating cloud apps, deploying AI agents, or automating workflows.
         </p>
@@ -86,7 +86,7 @@ const UseCases = ({ assets }) => {
                   <img src={item.image} alt={item.title} />
                 </div>
                 <div className="use-case-content">
-                  <h2>{item.title}</h2>
+                  <h2 className="text-gradient-animated">{item.title}</h2>
                   <p>{item.desc}</p>
                   <div className="check-list">
                     {item.points.map((p, j) => (
@@ -101,7 +101,7 @@ const UseCases = ({ assets }) => {
             ) : (
               <>
                 <div className="use-case-content">
-                  <h2>{item.title}</h2>
+                  <h2 className="text-gradient-animated">{item.title}</h2>
                   <p>{item.desc}</p>
                   <div className="check-list">
                     {item.points.map((p, j) => (

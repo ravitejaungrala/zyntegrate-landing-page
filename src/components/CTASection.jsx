@@ -11,8 +11,8 @@ const CTASection = () => {
             <span>✨ Start Your Integration Journey</span>
           </div>
           <h2 className="cta-heading">
-            Stop <span className="cta-highlight-blue">Managing</span> Integrations. <br />
-            Start <span className="cta-highlight-blue">Orchestration</span> System.
+            Stop <span className="text-gradient-animated">Managing</span> Integrations. <br />
+            Start <span className="text-gradient-animated">Orchestration</span> System.
           </h2>
           <p className="cta-subtext">
             Bring clarity to your infrastructure.
@@ -22,7 +22,7 @@ const CTASection = () => {
         <div className="cta-col-right-combined">
           <div className="cta-info-footer">
             <div className="cta-contact-column">
-              <h3>Offices</h3>
+              <h3>Office</h3>
               <p><strong>USA:</strong> Dallas, 702 S Denton Tap Rd, Suite #110, Coppell, 75019</p>
             </div>
             <div className="cta-contact-column">
@@ -35,9 +35,9 @@ const CTASection = () => {
 
           <div className="cta-button-container">
             <button className="cta-contact-btn">
-              Contact Us 
+              Contact Us
               <svg className="cta-btn-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
+                <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </button>
           </div>

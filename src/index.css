@@ -195,6 +195,27 @@ button {
   -webkit-text-fill-color: transparent;
 }
 
+.text-gradient-animated {
+  background: linear-gradient(
+    -45deg,
+    #1e3a8a, /* Dark blue */
+    #3b82f6, /* Medium blue */
+    #93c5fd, /* Light blue */
+    #2563eb  /* Primary blue */
+  );
+  background-size: 300% 300%;
+  animation: bg-shift 4s ease infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes bg-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 .glass {
   background: var(--glass-bg);
   backdrop-filter: blur(12px);

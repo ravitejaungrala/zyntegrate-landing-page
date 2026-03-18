@@ -105,7 +105,7 @@ const Workflow = () => {
       <div className="wf-text-content">
         <h2 className="section-title">
           Your Systems. <br />
-          <span className="text-gradient">Now Autonomous.</span>
+          <span className="text-gradient-animated">Now Autonomous.</span>
         </h2>
         <p className="section-subtitle">
           AI agents that monitor events, trigger workflows, and optimize operations automatically.

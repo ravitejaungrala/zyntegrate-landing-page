@@ -44,9 +44,10 @@
 
 .feature-card.active { 
   border-color: transparent; 
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08); 
-  transform: translateY(-4px); 
+  box-shadow: 0 25px 45px -10px rgba(0, 0, 0, 0.15); 
+  transform: translateY(-6px) scale(1.06); 
   --current-border-color: var(--feature-color); /* Switch to theme color */
+  z-index: 10;
 }
 
 .feature-card::before {

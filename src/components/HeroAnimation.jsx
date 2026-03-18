@@ -7,38 +7,39 @@ import {
   MessageSquare, 
   Zap, 
   ShieldCheck, 
-  Workflow
+  Workflow,
+  ArrowRight
 } from 'lucide-react';
 import './HeroAnimation.css';
 
 const nodes = [
-  { id: 'cloud', icon: <Cloud size={24} />, label: 'Cloud', color: '#3b82f6', top: '25%', left: '18%' },
-  { id: 'security', icon: <ShieldCheck size={24} />, label: 'Security', color: '#8b5cf6', top: '50%', left: '12%' },
-  { id: 'web', icon: <Globe size={24} />, label: 'Web', color: '#6366f1', top: '75%', left: '22%' },
-  { id: 'api', icon: <Cpu size={24} />, label: 'API', color: '#f59e0b', top: '85%', left: '50%' },
-  { id: 'trigger', icon: <Zap size={24} />, label: 'Trigger', color: '#f97316', top: '65%', left: '86%' },
-  { id: 'saas', icon: <MessageSquare size={24} />, label: 'SaaS', color: '#ec4899', top: '35%', left: '86%' },
-  { id: 'data', icon: <Database size={24} />, label: 'Data', color: '#10b981', top: '15%', left: '75%' },
+  { id: 'cloud', icon: <Cloud size={24} />, label: 'Cloud', color: '#3b82f6', top: '32%', left: '12%' },
+  { id: 'security', icon: <ShieldCheck size={24} />, label: 'Security', color: '#8b5cf6', top: '55%', left: '8%' },
+  { id: 'web', icon: <Globe size={24} />, label: 'Web', color: '#6366f1', top: '78%', left: '18%' },
+  { id: 'api', icon: <Cpu size={24} />, label: 'API', color: '#f59e0b', top: '88%', left: '35%' },
+  { id: 'trigger', icon: <Zap size={24} />, label: 'Trigger', color: '#f97316', top: '78%', left: '82%' },
+  { id: 'saas', icon: <MessageSquare size={24} />, label: 'SaaS', color: '#ec4899', top: '55%', left: '88%' },
+  { id: 'data', icon: <Database size={24} />, label: 'Data', color: '#10b981', top: '32%', left: '82%' },
 ];
 
 const flowTypes = [
   { 
     id: 'ONE_TO_ONE', 
-    title: 'One-to-One Integration', 
+    title: 'One-to-One', 
     desc: 'Connecting SaaS directly to Data Warehouse',
     sources: ['saas'],
     targets: ['data']
   },
   { 
     id: 'MANY_TO_ONE', 
-    title: 'Many-to-One Consolidation', 
+    title: 'Many-to-One', 
     desc: 'Syncing Cloud, API, and Web logs into Central Hub',
     sources: ['cloud', 'api', 'web'],
     targets: ['data']
   },
   { 
     id: 'ONE_TO_MANY', 
-    title: 'One-to-Many Distribution', 
+    title: 'One-to-Many', 
     desc: 'Trigger distribution to Cloud, SaaS, and APIs',
     sources: ['trigger'],
     targets: ['cloud', 'saas', 'api']
@@ -48,13 +49,22 @@ const flowTypes = [
 const HeroAnimation = () => {
   const [currentFlowIndex, setCurrentFlowIndex] = useState(0);
   const [activePulse, setActivePulse] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
+    if (isPaused) return;
     const interval = setInterval(() => {
       setCurrentFlowIndex((prev) => (prev + 1) % flowTypes.length);
     }, 4500); // 4.5s per flow type
     return () => clearInterval(interval);
-  }, []);
+  }, [isPaused]);
+
+  const handleDotClick = (idx) => {
+    setCurrentFlowIndex(idx);
+    setIsPaused(true);
+    // Auto resume after 10s of inactivity
+    setTimeout(() => setIsPaused(false), 10000);
+  };
 
   useEffect(() => {
     const pulseInterval = setInterval(() => {
@@ -67,10 +77,40 @@ const HeroAnimation = () => {
 
   return (
     <div className="hero-animation-container">
-      {/* Flow Explanation Label */}
-      <div className="ha-flow-label">
-        <div className="ha-flow-badge">{currentFlow.title}</div>
+      {/* Slide Explainer Card */}
+      <div className="ha-slide-card">
+        <div className="ha-slide-header">
+          <div className="ha-flow-badge">{currentFlow.title}</div>
+        </div>
         <div className="ha-flow-desc">{currentFlow.desc}</div>
+        
+        <div className="ha-flow-diagram">
+          <div className="ha-diagram-group">
+            {currentFlow.sources.map(src => {
+              const node = nodes.find(n => n.id === src);
+              return (
+                <div key={src} className="ha-mini-icon" style={{ borderColor: node.color, color: node.color }} title={node.label}>
+                  {node.icon}
+                </div>
+              );
+            })}
+          </div>
+          <ArrowRight size={16} className="ha-diagram-arrow" />
+          <div className="ha-diagram-hub-icon">
+            <Workflow size={16} color="#fff" />
+          </div>
+          <ArrowRight size={16} className="ha-diagram-arrow" />
+          <div className="ha-diagram-group">
+            {currentFlow.targets.map(tgt => {
+              const node = nodes.find(n => n.id === tgt);
+              return (
+                <div key={tgt} className="ha-mini-icon" style={{ borderColor: node.color, color: node.color }} title={node.label}>
+                  {node.icon}
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
 
       {/* Central Hub */}
@@ -148,10 +188,16 @@ const HeroAnimation = () => {
 
       {/* Background Elements */}
       <div className="ha-bg-grid"></div>
-      <div className="ha-code-scroll">
-        <div className="ha-code-line">FLOW: {currentFlow.id}</div>
-        <div className="ha-code-line">STATUS: ACTIVE</div>
-        <div className="ha-code-line">{currentFlow.sources.join(', ')} &rarr; HUB &rarr; {currentFlow.targets.join(', ')}</div>
+      {/* Slider Pagination Dots */}
+      <div className="ha-slider-dots">
+        {flowTypes.map((_, idx) => (
+          <button 
+            key={idx}
+            className={`ha-dot ${currentFlowIndex === idx ? 'active' : ''}`}
+            onClick={() => handleDotClick(idx)}
+            aria-label={`Go to slide ${idx + 1}`}
+          />
+        ))}
       </div>
     </div>
   );

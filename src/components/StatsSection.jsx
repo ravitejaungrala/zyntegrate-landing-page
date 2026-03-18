@@ -41,7 +41,7 @@ const StatsSection = () => {
     <section id="why" className="container section-padding">
       <div className="stats-header">
         <span className="badge">Why it matters</span>
-        <h2 className="section-title">Built for <span className="text-gradient">today's reality</span></h2>
+        <h2 className="section-title">Built for <span className="text-gradient-animated">today's reality</span></h2>
         <p className="section-subtitle">
           The world runs on data. Here's why seamless integration is no longer optional—it's the foundation of every modern enterprise.
         </p>
@@ -53,7 +53,7 @@ const StatsSection = () => {
             <div className="stats-card-header">
               <div className="stats-card-icon">{stat.icon}</div>
               <div style={{ textAlign: 'right' }}>
-                <div className="stat-value">{stat.value}</div>
+                <div className="stat-value" style={{ color: stat.color }}>{stat.value}</div>
                 <div className="stat-sublabel">{stat.label}</div>
               </div>
             </div>

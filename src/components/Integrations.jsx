@@ -68,7 +68,7 @@ const Integrations = () => {
       <div>
         <h2 style={{ fontSize: '2.5rem', marginBottom: '1.25rem', lineHeight: '1.1' }}>
           Powerful Integrations. <br />
-          <span className="text-gradient">Simplified.</span>
+          <span className="text-gradient-animated">Simplified.</span>
         </h2>
         
         <div className="features-list">
