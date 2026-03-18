@@ -9,6 +9,7 @@
   padding: 1.25rem 0; /* Slightly tighter */
   border-top: 2px solid rgba(59, 130, 246, 0.6); /* Vibrant blue edge */
   border-bottom: 2px solid rgba(59, 130, 246, 0.6);
+  margin-top: 5rem; /* Added gap separating from Hero Grid */
   overflow: hidden;
   background: rgba(255, 255, 255, 0.4); /* Glassmorphism */
   backdrop-filter: blur(12px);
@@ -28,13 +29,13 @@
   display: flex;
   width: max-content;
   animation: marquee 40s linear infinite;
-  gap: 4rem; /* Generous gap between groups */
+  gap: 6.5rem; /* Expanded gap between groups from 4rem */
 }
 
 .trigger-group {
   display: flex;
-  gap: 4rem;
-  padding-right: 4rem;
+  gap: 6.5rem; /* Expanded item gap from 4rem */
+  padding-right: 6.5rem;
 }
 
 .trigger-item {

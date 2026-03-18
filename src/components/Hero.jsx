@@ -1,10 +1,10 @@
 import React from 'react';
 import './Hero.css';
-import { GradientButton } from './ui/gradient-button';
+import HeroAnimation from './HeroAnimation';
 
 const Hero = ({ image }) => {
   return (
-    <section className="container hero">
+    <section id="hero" className="container hero">
       <div className="hero-content">
         <h1>
           Connect Everything. <br />
@@ -12,17 +12,13 @@ const Hero = ({ image }) => {
           <span className="text-gradient">Powered by <br /> Intelligent Agents.</span>
         </h1>
         <p>
-          Zyntegrate unifies fragmented systems and automates complex workflows from legacy 
-          databases to cloud platforms and APIs all in one intelligent layer.
+          Zyntegrate unifies fragmented systems and automates complex workflows from legacy
+          databases to cloud platforms and APIs all in one intelligent layer using Agents
         </p>
-        <div className="hero-actions">
-          <GradientButton variant="variant">
-            Explore Integrations
-          </GradientButton>
-        </div>
+
       </div>
-      <div className="hero-image float">
-        <img src={image} alt="Zyntegrate Automation Cloud" />
+      <div className="hero-image">
+        <HeroAnimation />
       </div>
     </section>
   );

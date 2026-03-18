@@ -118,8 +118,8 @@
 }
 
 .wf-agent-node {
-  width: 56px; /* Slightly larger node */
-  height: 56px;
+  width: 84px; /* Larger node for branding text */
+  height: 84px;
   background: white;
   border: 1px solid #e2e8f0;
   border-radius: 50%;
@@ -127,7 +127,7 @@
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 0.8rem;
+  font-size: 0.725rem; /* Fit text nicely */
   color: #1e3a8a;
   position: relative;
   box-shadow: 0 10px 25px rgba(0,0,0,0.05);

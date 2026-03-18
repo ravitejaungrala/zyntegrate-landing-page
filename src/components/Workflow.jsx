@@ -45,7 +45,7 @@ const VisualWorkflow = ({ globalStep }) => {
       {/* Agent Center */}
       <div className={`wf-agent-node-container ${activeStep >= 2 ? 'visible' : ''}`}>
         <div className="wf-agent-node">
-          <span>Agent</span>
+          <span>Zyntegrate</span>
           <div className="wf-pulse-ring"></div>
           <div className="wf-pulse-ring-outer"></div>
         </div>
@@ -97,7 +97,7 @@ const Workflow = () => {
   ];
 
   return (
-    <section className="container section-padding wf-main-section">
+    <section id="how-it-works" className="container section-padding wf-main-section">
       <div className="wf-animation-wrapper">
         <VisualWorkflow globalStep={globalStep} />
       </div>

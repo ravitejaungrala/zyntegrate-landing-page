@@ -17,71 +17,49 @@ const Integrations = () => {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setRotationAngle((prev) => (prev + 0.3) % 360);
-    }, 50);
+      setActiveFeature((prev) => (prev + 1) % features.length);
+    }, 3500); // Glides to next feature node every 3.5 seconds
     return () => clearInterval(timer);
-  }, []);
-
-  useEffect(() => {
-    // Sync active feature with rotation
-    const index = Math.round(((rotationAngle % 360) / 360) * features.length) % features.length;
-    // Map the bottom-most node to be active
-    const activeIdx = (features.length - index) % features.length;
-    setActiveFeature(activeIdx);
-  }, [rotationAngle]);
-
-  const calculatePosition = (index, total) => {
-    const angle = ((index / total) * 360 + rotationAngle) % 360;
-    const radius = 160;
-    const radian = (angle * Math.PI) / 180;
-    const x = radius * Math.cos(radian);
-    const y = radius * Math.sin(radian);
-    const zIndex = Math.round(100 + 50 * Math.cos(radian));
-    const opacity = Math.max(0.4, 0.4 + 0.6 * ((1 + Math.sin(radian)) / 2));
-    const color = features[index].color;
-    return { x, y, zIndex, opacity, color };
-  };
+  }, [features.length]);
 
   return (
-    <section className="container section-padding integrations">
+    <section id="features" className="container section-padding integrations">
       <div className="integrations-visual">
-        <div className="orbital-container">
-          <div className="orbital-inner">
-            <div className="orbital-orbit-wrapper">
-              <div className="orbital-center-hub">
+        <div className="int-orbital-container">
+          <div className="int-orbital-inner">
+            <div className="int-orbital-orbit-wrapper">
+              <div className="int-orbital-center-hub">
+                <div className="orbital-hub-core">
+                  <div className="orbital-hub-icon" style={{ backgroundColor: features[activeFeature].color }}>
+                    {React.createElement(features[activeFeature].icon, { size: 22, color: '#fff' })}
+                  </div>
+                  <p className="orbital-hub-sub">Agents driven Integration</p>
+                  <h3 className="orbital-hub-title">{features[activeFeature].title}</h3>
+                </div>
                 <div className="orbital-hub-ping-1"></div>
                 <div className="orbital-hub-ping-2"></div>
-                <div className="orbital-hub-core"></div>
               </div>
 
-              <div className="orbital-path-circle"></div>
+              {/* Backing conic gradient blue ring from user design file */}
+              <div className="int-orbital-orbit-ring"></div>
+              
+              {/* White spacer creating the gap between center hub and blue ring */}
+              <div className="int-orbital-spacer-ring"></div>
 
-              {features.map((feature, index) => {
-                const pos = calculatePosition(index, features.length);
-                const isActive = activeFeature === index;
-                const Icon = feature.icon;
+              <div className="int-orbital-path-circle"></div>
 
-                return (
-                  <div
-                    key={index}
-                    className="orbital-node"
-                    style={{
-                      transform: `translate(${pos.x}px, ${pos.y}px)`,
-                      zIndex: pos.zIndex,
-                      opacity: pos.opacity,
-                      '--node-color': feature.color
-                    }}
-                  >
-                    <div className="orbital-node-energy"></div>
-                    <div className={`orbital-node-icon ${isActive ? 'active' : ''}`} style={{ borderColor: isActive ? feature.color : 'rgba(59, 130, 246, 0.2)', backgroundColor: isActive ? feature.color : '#fff' }}>
-                      <Icon size={20} color={isActive ? '#fff' : feature.color} />
-                    </div>
-                    <div className={`orbital-node-title ${isActive ? 'active' : ''}`} style={{ color: isActive ? '#1e293b' : 'rgba(100, 116, 139, 0.7)' }}>
-                      {feature.title}
-                    </div>
-                  </div>
-                );
-              })}
+              {/* Single stepping node selector that glides to absolute angle multipliers */}
+              <div 
+                className="int-orbital-nodes-track" 
+                style={{ 
+                  transform: `translate(-50%, -50%) rotate(${activeFeature * (360 / features.length)}deg)`,
+                  transition: 'transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)'
+                }}
+              >
+                <div className="orbital-slider-node">
+                  <div className="orbital-slider-dot" style={{ backgroundColor: features[activeFeature].color }}></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -99,12 +77,15 @@ const Integrations = () => {
               key={i} 
               className={`feature-card ${activeFeature === i ? 'active' : ''}`}
               style={{ '--feature-color': f.color }}
+              onClick={() => setActiveFeature(i)}
             >
               <div className="feature-icon">
-                <f.icon size={16} color={activeFeature === i ? f.color : '#64748b'} />
+                <f.icon size={16} color={f.color} />
               </div>
-              <h3>{f.title}</h3>
-              <p>{f.desc}</p>
+              <div className="feature-card-content">
+                <h3>{f.title}</h3>
+                <p>{f.desc}</p>
+              </div>
               {activeFeature === i && <div className="feature-cursor"></div>}
             </div>
           ))}

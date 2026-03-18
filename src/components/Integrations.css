@@ -34,8 +34,8 @@
 }
 
 .feature-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  transform: translateY(-6px) scale(1.03); /* Lift up and Zoom in slight */
+  box-shadow: 0 12px 35px rgba(0,0,0,0.08);
 }
 
 .feature-card {
@@ -131,4 +131,204 @@
 @media (max-width: 1024px) {
   .integrations { grid-template-columns: 1fr; text-align: center; gap: 4rem; }
   .integrations-visual { min-height: 480px; }
+}
+
+/* Center Hub Inside Labels */
+.int-orbital-center-hub {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 220px; /* Scaled from 170px */
+  height: 220px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orbital-hub-core {
+  width: 100%;
+  height: 100%;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06), inset 0 0 15px rgba(255,255,255,0.9);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  position: relative;
+  z-index: 2;
+}
+
+.orbital-hub-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.6rem;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.orbital-hub-sub {
+  font-size: 0.65rem; /* Scaled from 0.55rem */
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64748b;
+  margin-bottom: 0.25rem;
+}
+
+.orbital-hub-title {
+  font-size: 1.1rem; /* Scaled from 0.85rem */
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.2;
+}
+
+.orbital-hub-ping-1, .orbital-hub-ping-2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  background: rgba(59, 130, 246, 0.08);
+  z-index: 1;
+  animation: hub-pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  width: 240px; /* Scaled from 190px */
+  height: 240px;
+}
+
+.orbital-hub-ping-2 {
+  width: 260px; /* Scaled from 210px */
+  height: 260px;
+  animation-delay: 1.5s;
+}
+
+@keyframes hub-pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(0.94); opacity: 0.3; }
+  50% { transform: translate(-50%, -50%) scale(1.06); opacity: 0.7; }
+}
+
+.int-orbital-orbit-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 350px; /* Scaled from 270px */
+  height: 350px;
+  background: conic-gradient(from 220deg at 50% 50%, #2563EB, #3B82F6, #60A5FA, #2563EB);
+  border-radius: 50%;
+  opacity: 0.75; /* Even darker blue band as requested */
+  z-index: 1;
+  filter: blur(0.5px);
+}
+
+.int-orbital-spacer-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 250px; /* Scaled from 195px */
+  height: 250px;
+  background: white;
+  border-radius: 50%;
+  z-index: 1; /* Covers backing gradient before text core overlaps */
+}
+
+.int-orbital-path-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 420px; /* Scaled from 320px */
+  height: 420px;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.int-orbital-orbit-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.int-orbital-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.int-orbital-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.orbital-node {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.orbital-node-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  background: white;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+  transition: all 0.3s ease;
+}
+
+.orbital-node-title {
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: #64748b;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+/* Single Dot Slider Track */
+.int-orbital-nodes-track {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0px;
+  height: 0px;
+  transform-origin: center center;
+}
+
+.orbital-slider-node {
+  position: absolute;
+  top: -224px; /* Centers 28px Dot vertically on 210px Path radius */
+  left: -14px; /* Centers 28px Dot horizontally */
+  width: 28px;
+  height: 28px;
+}
+
+.orbital-slider-dot {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.45);
+  border: 4px solid white;
+  transition: background-color 0.4s ease;
 }

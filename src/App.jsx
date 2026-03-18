@@ -37,13 +37,13 @@ const triggerItems = [
 
 function App() {
   const useCaseAssets = {
-    legacy: legacyImg,
-    cloud: cloudImg,
-    api: apiImg,
-    ai: aiImg,
-    lowcode: lowcodeImg,
-    connectors: connectorsImg,
-    monitoring: monitoringImg
+    legacy: '/legacy1.jpg',
+    cloud: '/vendor.jpg',
+    api: '/thirdparty.webp',
+    ai: '/aiagents.jpg',
+    lowcode: lowcodeImg, // Retaining import since it was skipped in prompt
+    connectors: '/prebuilt1.png',
+    monitoring: '/montinoring.jpg'
   };
 
   return (
@@ -51,7 +51,7 @@ function App() {
       <Navbar />
       
       <main>
-        <Hero image={heroImg} />
+        <Hero image="/hero-section.png" />
         
         {/* Trigger Bar Section */}
         <section className="container trigger-bar-section">

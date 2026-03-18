@@ -5,6 +5,20 @@
   margin-bottom: 4rem;
 }
 
+.badge {
+  background: #eff6ff; /* Ultra light blue background */
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #1e3a8a; /* Deep high-contrast blue text */
+  padding: 0.4rem 1.2rem;
+  border-radius: 2rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  display: inline-block;
+  margin-bottom: 1.25rem;
+}
+
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -97,11 +111,20 @@
 }
 
 .stats-card-icon {
-  width: 32px;
-  height: 32px;
-  background: var(--stat-color);
-  opacity: 0.1;
+  width: 38px;
+  height: 38px;
+  background: color-mix(in srgb, var(--stat-color) 15%, transparent);
+  color: color-mix(in srgb, var(--stat-color) 85%, black); /* Darker contrast */
   border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stats-card-icon svg {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2.5px; /* Thicker & bolder */
 }
 
 .stats-card-title {

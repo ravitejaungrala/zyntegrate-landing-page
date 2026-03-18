@@ -79,22 +79,35 @@
   gap: 4rem;
 }
 
-.cta-btn {
-  background: #2563eb;
-  color: white; /* Ensure initial text is white */
-  padding: 1.25rem 3rem;
-  font-size: 1.1rem;
-  border-radius: 0.8rem;
-  white-space: nowrap;
-  width: fit-content;
-  border: 2px solid transparent; /* Prepare for border on hover */
-  transition: all 0.3s ease;
+.cta-contact-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 40px; /* py-4 px-10 approx math */
+  border-radius: 12px; /* rounded-xl format */
+  background: linear-gradient(90deg, #2563eb 0%, #4f46e5 100%); /* Blue to Indigo */
+  color: white;
+  font-size: 1.125rem; /* text-lg */
+  font-weight: 600; /* font-semibold */
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.cta-btn:hover {
-  background: white !important;
-  color: #2563eb !important;
-  border: 2px solid #000000 !important;
+.cta-contact-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(37, 99, 235, 0.3);
+}
+
+.cta-btn-arrow {
+  transition: transform 0.3s ease;
+  stroke-width: 2.5px;
+}
+
+.cta-contact-btn:hover .cta-btn-arrow {
+  transform: translateX(4px);
 }
 
 .cta-contact-column h3 {
